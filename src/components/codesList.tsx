@@ -1,0 +1,84 @@
+function CodesList() {
+  return (
+    <div>
+      <option value="100" />
+      <option value="101" />
+      <option value="102" />
+      <option value="103" />
+      <option value="200" />
+      <option value="201" />
+      <option value="202" />
+      <option value="203" />
+      <option value="204" />
+      <option value="205" />
+      <option value="206" />
+      <option value="207" />
+      <option value="208" />
+      <option value="226" />
+      <option value="300" />
+      <option value="301" />
+      <option value="302" />
+      <option value="303" />
+      <option value="304" />
+      <option value="305" />
+      <option value="306" />
+      <option value="307" />
+      <option value="308" />
+      <option value="400" />
+      <option value="401" />
+      <option value="402" />
+      <option value="403" />
+      <option value="404" />
+      <option value="405" />
+      <option value="406" />
+      <option value="407" />
+      <option value="408" />
+      <option value="409" />
+      <option value="410" />
+      <option value="411" />
+      <option value="412" />
+      <option value="413" />
+      <option value="414" />
+      <option value="415" />
+      <option value="416" />
+      <option value="417" />
+      <option value="418" />
+      <option value="420" />
+      <option value="421" />
+      <option value="422" />
+      <option value="423" />
+      <option value="424" />
+      <option value="425" />
+      <option value="426" />
+      <option value="428" />
+      <option value="429" />
+      <option value="431" />
+      <option value="444" />
+      <option value="450" />
+      <option value="451" />
+      <option value="497" />
+      <option value="498" />
+      <option value="499" />
+      <option value="500" />
+      <option value="501" />
+      <option value="502" />
+      <option value="503" />
+      <option value="504" />
+      <option value="505" />
+      <option value="506" />
+      <option value="507" />
+      <option value="508" />
+      <option value="509" />
+      <option value="510" />
+      <option value="511" />
+      <option value="521" />
+      <option value="522" />
+      <option value="523" />
+      <option value="525" />
+      <option value="451" />
+      <option value="599" />
+    </div>
+  );
+}
+
+export default CodesList;

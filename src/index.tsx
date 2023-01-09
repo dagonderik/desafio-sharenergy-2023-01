@@ -4,6 +4,7 @@ import './index.css';
 import Main from './pages/main/Main';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/login/Login';
+import Cats from './pages/cats/Cats';
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: 'main',
     element: <Main />
+  },
+  {
+    path: 'cats',
+    element: <Cats />
   }
 ]);
 
