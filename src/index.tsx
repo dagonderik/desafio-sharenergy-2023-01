@@ -5,6 +5,7 @@ import Main from './pages/main/Main';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/login/Login';
 import Cats from './pages/cats/Cats';
+import Dogs from './pages/dogs/Dogs';
 
 
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: 'cats',
     element: <Cats />
+  },
+  {
+    path: 'dogs',
+    element: <Dogs />
   }
 ]);
 
