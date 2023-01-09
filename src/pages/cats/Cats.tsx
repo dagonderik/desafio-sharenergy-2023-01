@@ -1,22 +1,20 @@
 import { ChangeEvent, useState } from "react";
 import CodesList from "../../components/codesList";
-
-async function fetchData(this: any) {
-  const response = await fetch(`https://http.cat/404`);
-}
+import "./Cats.css";
 
 function Cats({}) {
-  const [code, setcode] = useState("");
+  const [code, setCode] = useState("100");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setcode(e.target.value);
+    setCode(e.target.value);
     console.log(e.target.value);
   };
   return (
-    <div>
+    <div className="container">
+      <h1>Select an HTML code to see a related kitty pic</h1>
       <input list="codes" onChange={handleChange} />
       <datalist id="codes">
-        <CodesList/>
+        <CodesList />
       </datalist>
       <img src={`https://http.cat/${code}`} />
     </div>

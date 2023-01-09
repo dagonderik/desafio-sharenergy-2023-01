@@ -1,0 +1,23 @@
+.container {
+  background-color: #282c34;
+  height: 100vh;
+  display: grid;
+}
+
+h1 {
+    place-self: center;
+    color: burlywood;
+}
+
+img {
+  align-self: center;
+  place-self: center;
+}
+
+input {
+  width: fit-content;
+  height: 30px;
+  font-size: large;
+  align-self: center;
+  place-self: center;
+}
