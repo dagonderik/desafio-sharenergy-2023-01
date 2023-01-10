@@ -1,32 +1,31 @@
 .container {
     background-color: #282c34;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 h1 {
     place-self: center;
+    text-align: center;
     color: burlywood;
 }
 
-.image {
-    height: 300px;
-    width: 300px;
+.dog-image {
+    max-height: 80vh;
+    max-width: 100%;
 }
 
 .button-container {
-    display: flex;
+    display: grid;
     gap: 10px;
-    align-items: center;
-    justify-content: space-evenly;
+    place-self: center;
 }
 
 button {
     align-self: center;
-    width: fit-content;
+    max-width: fit-content;
+    text-overflow: ellipsis;
     height: 30px;
-    width: fit-content;
     font-size: large;
-    margin-bottom: 10px;
+    place-self: center;
 }

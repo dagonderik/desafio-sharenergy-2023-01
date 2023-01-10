@@ -3,7 +3,7 @@ import CodesList from "../../components/codesList";
 import "./Cats.css";
 
 function Cats({}) {
-  const [code, setCode] = useState("100");
+  const [code, setCode] = useState("0");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCode(e.target.value);
@@ -16,7 +16,7 @@ function Cats({}) {
       <datalist id="codes">
         <CodesList />
       </datalist>
-      <img src={`https://http.cat/${code}`} />
+      {code && <img src={`https://http.cat/${code}`} />}
     </div>
   );
 }

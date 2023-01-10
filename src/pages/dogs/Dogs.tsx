@@ -1,7 +1,8 @@
+import { debugPort } from "process";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import './Dogs.css';
+import "./Dogs.css";
 
-function Dogs({ }) {
+function Dogs({}) {
   const [dog, setDog] = useState("");
 
   return (
@@ -9,22 +10,22 @@ function Dogs({ }) {
       <h1>Take you daily dose of dog</h1>
       <div className="button-container">
         <button onClick={() => handleClick({ setDog })}>Refresh</button>
-      
-      <img className="image" src={`${dog}`} />
+        {dog.includes("mp4") || dog.includes("webm") ? (
+          <video className="dog-image" autoPlay loop src={`${dog}`}></video>
+        ) : (
+          <img className="dog-image" src={`${dog}`} />
+        )}
       </div>
     </div>
   );
 }
 
-
 function handleClick({ setDog }: { setDog: Dispatch<SetStateAction<string>> }) {
-  fetch(
-    'https://random.dog/woof.json'
-  )
+  fetch("https://random.dog/woof.json")
     .then((response) => response.json())
     .then((data) => {
       setDog(data.url);
-      console.log(data.url)
+      console.log(data.url);
     });
 }
 
