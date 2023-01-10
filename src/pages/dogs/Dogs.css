@@ -1,0 +1,32 @@
+.container {
+    background-color: #282c34;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+}
+
+h1 {
+    place-self: center;
+    color: burlywood;
+}
+
+.image {
+    height: 300px;
+    width: 300px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+button {
+    align-self: center;
+    width: fit-content;
+    height: 30px;
+    width: fit-content;
+    font-size: large;
+    margin-bottom: 10px;
+}

@@ -1,6 +1,7 @@
 .container {
   background-color: #282c34;
   height: 100vh;
+  width: 100vw;
   display: grid;
 }
 
@@ -12,6 +13,7 @@ h1 {
 img {
   align-self: center;
   place-self: center;
+  max-width: 500px;
 }
 
 input {
@@ -20,4 +22,5 @@ input {
   font-size: large;
   align-self: center;
   place-self: center;
+  margin-bottom: 10px;
 }
