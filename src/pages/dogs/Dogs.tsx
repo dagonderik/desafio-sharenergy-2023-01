@@ -1,5 +1,4 @@
-import { debugPort } from "process";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import "./Dogs.css";
 
 function Dogs({}) {
@@ -25,7 +24,6 @@ function handleClick({ setDog }: { setDog: Dispatch<SetStateAction<string>> }) {
     .then((response) => response.json())
     .then((data) => {
       setDog(data.url);
-      console.log(data.url);
     });
 }
 

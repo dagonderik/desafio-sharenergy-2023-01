@@ -1,4 +1,10 @@
-import { useState, useEffect, SetStateAction, Dispatch } from "react";
+import {
+  useState,
+  useEffect,
+  SetStateAction,
+  Dispatch,
+  ChangeEvent,
+} from "react";
 import { UsersList } from "../../userList";
 import "./Main.css";
 
@@ -25,7 +31,8 @@ function Main() {
       },
     },
   ]);
-  const [pageUsers, setPageUsers] = useState<UsersList[]>([
+
+  const [filteredUsers, setFilteredUsers] = useState<UsersList[]>([
     {
       email: "",
       picture: {
@@ -49,49 +56,121 @@ function Main() {
 
   useEffect(() => {
     const loadUsers = async () => {
-      await fetch("https://randomuser.me/api/?results=50")
+      await fetch(
+        "https://randomuser.me/api/?nat=br&page=1&results=5&seed=1234"
+      )
         .then((resp) => resp.json())
-        .then((data) =>{ setUsers(data.results.slice(0,5))
-        console.log(data.results)
-        setPageUsers(data.results)});
-        
-      console.log();
+        .then((data) => {
+          setUsers(data.results);
+          setFilteredUsers(data.results);
+        });
     };
-
-    setPageUsers(users);
-    setUsers(pageUsers.slice(0,5));
 
     loadUsers();
   }, []);
 
+  function advancePage({
+    setPage,
+  }: {
+    setPage: Dispatch<SetStateAction<number>>;
+  }) {
+    setPage(page + 1);
+    const loadUsers = async () => {
+      await fetch(
+        `https://randomuser.me/api/?nat=br&page=${page + 1}&results=5&seed=1234`
+      )
+        .then((resp) => resp.json())
+        .then((data) => {
+          setUsers(data.results);
+          setFilteredUsers(data.results);
+        });
+    };
 
-
-  function advancePage({setPage}: { setPage: Dispatch<SetStateAction<number>> }) {
-    if ( page < 10 ) {
-      setUsers(pageUsers.slice((0+page*5), ((page+1)*5)))
-      setPage(page+1);
-      console.log(page);
-    }
+    loadUsers();
   }
 
-  function returnPage({setPage}: { setPage: Dispatch<SetStateAction<number>> }) {
+  function returnPage({
+    setPage,
+  }: {
+    setPage: Dispatch<SetStateAction<number>>;
+  }) {
     if (page > 1) {
-      setUsers(pageUsers.slice(((page-2)*5), ((page-1)*5)));
-      setPage(page-1);
-      console.log(page);
-      console.log(pageUsers);
+      setPage(page - 1);
+      const loadUsers = async () => {
+        await fetch(
+          `https://randomuser.me/api/?nat=br&page=${
+            page - 1
+          }&results=5&seed=1234`
+        )
+          .then((resp) => resp.json())
+          .then((data) => {
+            setUsers(data.results);
+            setFilteredUsers(data.results);
+          });
+      };
+
+      loadUsers();
     }
   }
+
+  function searchName(
+    {
+      setFilteredUsers,
+    }: { setFilteredUsers: Dispatch<SetStateAction<UsersList[]>> },
+    search: string
+  ) {
+    let tempList: UsersList[] = [];
+    users.map((user, i) => {
+      if (!tempList.includes(user)) {
+        if (
+          user.name.first.toLowerCase().includes(search) ||
+          user.name.last.toLowerCase().includes(search)
+        ) {
+          tempList.push(user);
+        } else {
+          if (
+            user.email.toLowerCase().includes(search) ||
+            user.email.toLowerCase().includes(search)
+          ) {
+            tempList.push(user);
+          } else {
+            if (
+              user.login.username.toLowerCase().includes(search) ||
+              user.login.username.toLowerCase().includes(search)
+            ) {
+              tempList.push(user);
+            }
+          }
+        }
+      }
+    });
+    setFilteredUsers(tempList);
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const search = e.target.value;
+    if (e.target.value == "") {
+      setFilteredUsers(users);
+      console.log("alo");
+    }
+    searchName({ setFilteredUsers }, search);
+  };
 
   return (
     <div className="App">
+      <input onChange={handleChange} />
       <header className="App-header">
-        {users.map((user, i) => {
+        {filteredUsers.map((user, i) => {
           return (
-
             <div className="cards" key={i}>
               <img src={user.picture.large} />
-              <p>{user.name.title + ". " + user.name.first + " " + user.name.last}</p>
+              <p>
+                {user.name.title +
+                  ". " +
+                  user.name.first +
+                  " " +
+                  user.name.last}
+              </p>
               <p>{user.dob.age} years</p>
               <p>username: {user.login.username}</p>
               <p>{user.email}</p>
@@ -100,8 +179,20 @@ function Main() {
         })}
       </header>
       <div>
-        <button className="returnButton" onClick={() => returnPage({ setPage })}> {page} </button>
-        <button className="fowardButton" onClick={() => advancePage({ setPage })}> {page+1} </button>
+        <button
+          className="returnButton"
+          onClick={() => returnPage({ setPage })}
+        >
+          {" "}
+          {page}{" "}
+        </button>
+        <button
+          className="fowardButton"
+          onClick={() => advancePage({ setPage })}
+        >
+          {" "}
+          {page + 1}{" "}
+        </button>
       </div>
     </div>
   );
