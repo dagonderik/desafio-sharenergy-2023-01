@@ -1,0 +1,27 @@
+.App {
+    background-color: #282c34;
+    min-width: 100vw;
+    min-height: 100vh;
+} 
+
+.Container {
+    position: absolute;
+    top: calc(100vh/2 - 720px/2);
+    left: calc(100vw/2 - 968px/2);
+    background-image: url('../../../public/Green.png');
+    height: 720px;
+    width: 968px;
+}
+
+.Input-user {
+    position: absolute;
+    top: calc(250px);
+    left: 0px;
+}
+
+@media (max-width: 968px) {
+    .Container {
+        height: 50vh;
+        left: calc(5vw);
+    }
+}

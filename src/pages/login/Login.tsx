@@ -1,39 +1,56 @@
-import { useCallback } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import verifyLogin from "../../components/verifyLogin";
+import "./Login.css";
 
-function App() {
+function Login() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => verifyLogin(JSON.stringify(data));
-  const navigate = useNavigate();
-  const handleOnClick = useCallback(() => navigate('main', {replace:true}), [navigate]);
+
+  const onSubmit = (data: any) => {
+    try {
+      if (verifyLogin(JSON.stringify(data))) navigate("/users");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  useEffect(() => {
+    if (window.localStorage.getItem("token") == "logedIn") navigate("/users");
+  });
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          placeholder="username"
-          {...register("username", { required: true })}
-        />
-        {errors.username && <span>This field is required</span>}
-        <input
-          placeholder="password"
-          {...register("password", { required: true })}
-        />
-        {errors.password && <span>This field is required</span>}
-
-        <input type="submit" />
-      </form>
-
-      <button onClick={handleOnClick}> Aperte </button>
+      <div className="Container">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            className="Input-user"
+            placeholder="username"
+            {...register("username", { required: true })}
+          />
+          {errors.username && <span>This field is required</span>}
+          <input
+            className="Input-password"
+            placeholder="password"
+            {...register("password", { required: true })}
+          />
+          {errors.password && <span>This field is required</span>}
+          <input type="submit" />
+          <input
+            type="checkbox"
+            id="remember"
+            {...register("remember", { required: false })}
+          />
+          <label htmlFor="remember"> Remember me </label>
+        </form>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default Login;
