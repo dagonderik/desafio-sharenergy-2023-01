@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { UserDB } from "../../userDB";
+import Header from "../../components/header";
 
-const UserList = () => {
+const ClientList = () => {
   const [users, setUser] = useState<UserDB[]>([
     {
         _id: "",
@@ -34,7 +35,8 @@ const UserList = () => {
   };
 
   return (
-    <div className="columns mt-5">
+    <div className="columns mt-5 App">
+      <Header/>
       <div className="column is-half">
         <Link to="/add" className="button is-success">
           Add New
@@ -71,6 +73,7 @@ const UserList = () => {
                   >
                     Delete
                   </button>
+                  <button className="delete"/>
                 </td>
               </tr>
             ))}
@@ -81,4 +84,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default ClientList;

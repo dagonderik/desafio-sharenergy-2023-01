@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-const EditUser = () => {
+const EditClient = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -34,7 +34,7 @@ const EditUser = () => {
         address,
         cpf,
       });
-      navigate("/users");
+      navigate("/clients");
     } catch (error) {
       console.log(error);
     }
@@ -117,4 +117,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default EditClient;

@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import Header from "../../components/header";
 import "./Dogs.css";
 
 function Dogs({}) {
@@ -6,6 +7,7 @@ function Dogs({}) {
 
   return (
     <div className="container">
+      <Header/>
       <h1>Take you daily dose of dog</h1>
       <div className="button-container">
         <button onClick={() => handleClick({ setDog })}>Refresh</button>

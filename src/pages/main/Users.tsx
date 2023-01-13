@@ -5,10 +5,11 @@ import {
   Dispatch,
   ChangeEvent,
 } from "react";
+import Header from "../../components/header";
 import { UsersList } from "../../userList";
-import "./Main.css";
+import "./Users.css";
 
-function Main() {
+function Users() {
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState<UsersList[]>([
     {
@@ -158,12 +159,13 @@ function Main() {
 
   return (
     <div className="App">
+      <Header />
       <input onChange={handleChange} />
       <header className="App-header">
         {filteredUsers.map((user, i) => {
           return (
             <div className="cards" key={i}>
-              <img src={user.picture.large} />
+              <img src={user.picture.large} alt={user.name.first} />
               <p>
                 {user.name.title +
                   ". " +
@@ -198,4 +200,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Users;

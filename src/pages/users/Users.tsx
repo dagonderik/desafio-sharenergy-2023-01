@@ -1,12 +1,13 @@
-import { ChangeEvent, useState } from "react";
-import UserList from "../usersDB/UserList";
+import Header from "../../components/header";
+import ClientList from "../usersDB/ClientList";
 
 
 function Users({}) {
 
   return (
     <div className="container">
-        <UserList></UserList>
+      <Header/>
+        <ClientList></ClientList>
     </div>
   );
 }

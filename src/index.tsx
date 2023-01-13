@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "bulma/css/bulma.css";
 import "./index.css";
-import Main from "./pages/main/Main";
+import Users from "./pages/main/Users";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Cats from "./pages/cats/Cats";
 import Dogs from "./pages/dogs/Dogs";
-import Users from "./pages/users/Users";
-import EditUser from "./pages/usersDB/EditUsers";
-import AddUser from "./pages/usersDB/AddUser";
+import ClientList from "./pages/usersDB/ClientList";
+import AddClient from "./pages/usersDB/AddClient";
+import EditClient from "./pages/usersDB/EditUsers";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +17,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "main",
-    element: <Main />,
+    path: "users",
+    element: <Users />,
   },
   {
     path: "cats",
@@ -29,16 +29,20 @@ const router = createBrowserRouter([
     element: <Dogs />,
   },
   {
-    path: "users",
-    element: <Users />,
+    path: "clients",
+    element: <ClientList />,
   },
   {
     path: "add",
-    element: <AddUser />,
+    element: <AddClient />,
   },
   {
     path: "edit/:id",
-    element: <EditUser />,
+    element: <EditClient />,
+  },
+  {
+    path: "*",
+    element: <Login />,
   },
 ]);
 
@@ -46,6 +50,4 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-root.render(
-    <RouterProvider router={router} />
-);
+root.render(<RouterProvider router={router} />);

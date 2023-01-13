@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const AddUser = () => {
+const AddClient = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -20,7 +20,7 @@ const AddUser = () => {
         address,
         cpf,
       });
-      navigate("/users");
+      navigate("/clients");
     } catch (error) {
       console.log(error);
     }
@@ -109,4 +109,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default AddClient;
