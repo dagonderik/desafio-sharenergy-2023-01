@@ -9,12 +9,13 @@
   }
 
   #card {
-    background-color: rgb(231, 231, 231);
+    background-image: linear-gradient(to right, rgb(251, 252, 238), rgb(188, 189, 186));
     max-width: 400px;
     box-shadow: 5px 5px 5px rgb(14, 14, 14);
     transition: 0.3s;
   }
 
   #card:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
+  

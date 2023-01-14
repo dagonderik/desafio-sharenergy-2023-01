@@ -1,17 +1,5 @@
 .App {
   text-align: center;
-  color: white;
-}
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-items: end;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding-top: 30px;
 }
 
 .cards {
@@ -19,3 +7,17 @@
   margin: 5px;
 }
 
+.header-container {
+  max-width: 1350px;
+  max-height: fit-content;
+  position: sticky;
+  left: calc((100vw - 1350px)/2)
+}
+
+.page-footer {
+  margin-top: 20px;
+}
+
+.search-box {
+  margin-top: 20px;
+}

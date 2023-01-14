@@ -1,4 +1,4 @@
-import { Avatar, Divider, Pagination, Row } from "antd";
+import { Pagination, Row } from "antd";
 import styles from "./Users.module.css";
 import Card from "antd/es/card";
 import Meta from "antd/es/card/Meta";
@@ -136,43 +136,43 @@ function Users() {
 
   return (
     <div className="App">
-      <Header />
-      <input onChange={handleChange} />
-      <header className="App-header">
-        <Row justify="space-around">
-          {filteredUsers.map((user, i) => {
-            return (
-              <Col className="cards" span={5} key={i}>
-                <Card
-                  id={styles.card}
-                  cover={
-                    <img
-                      id={styles["cover-img"]}
-                      src={user.picture.large}
-                      alt={user.name.first}
-                    />
-                  }
-                  bordered={true}
-                >
-                  <Meta
-                    title={
-                      user.name.title +
-                      ". " +
-                      user.name.first +
-                      " " +
-                      user.name.last
-                    }
+      <div className="header-container">
+        <Header />
+      </div>
+      <input className="search-box" onChange={handleChange} placeholder="Search" />
+      <Row justify="space-around">
+        {filteredUsers.map((user, i) => {
+          return (
+            <Col className="cards" span={5} key={i}>
+              <Card
+                id={styles.card}
+                cover={
+                  <img
+                    id={styles["cover-img"]}
+                    src={user.picture.large}
+                    alt={user.name.first}
                   />
-                  <Meta description={`${user.dob.age} Years`} />
-                  <Meta description={user.login.username} />
-                  <Meta description={user.email} />
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
-      </header>
-      <footer>
+                }
+                bordered={true}
+              >
+                <Meta
+                  title={
+                    user.name.title +
+                    ". " +
+                    user.name.first +
+                    " " +
+                    user.name.last
+                  }
+                />
+                <Meta description={`${user.dob.age} Years`} />
+                <Meta description={user.login.username} />
+                <Meta description={user.email} />
+              </Card>
+            </Col>
+          );
+        })}
+      </Row>
+      <footer className="page-footer">
         <Pagination
           defaultCurrent={pageNumber}
           defaultPageSize={12}
