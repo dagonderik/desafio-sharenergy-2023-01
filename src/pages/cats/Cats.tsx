@@ -11,14 +11,23 @@ function Cats({}) {
     console.log(e.target.value);
   };
   return (
-    <div className="container">
-      <Header/>
-      <h1>Select an HTML code to see a related kitty pic</h1>
-      <input list="codes" onChange={handleChange} />
+    <div className="cat-page">
+      <div className="header-container">
+        <Header />
+      </div>
+      <h1 className="cats-title">
+        Select an HTML code to see a related kitty pic
+      </h1>
+      <input
+        className="cats-input"
+        placeholder="Type an HTML code"
+        list="codes"
+        onChange={handleChange}
+      />
       <datalist id="codes">
         <CodesList />
       </datalist>
-      {code && <img src={`https://http.cat/${code}`} />}
+        {code && <img className="cats-image" src={`https://http.cat/${code}`} />}
     </div>
   );
 }

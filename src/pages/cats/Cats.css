@@ -1,26 +1,26 @@
-.container {
+.cat-page {
   background-color: #282c34;
-  height: 100vh;
-  width: 100vw;
-  display: grid;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
+.cats-image{
+  align-self: center;
+}
+
+.cats-title {
     place-self: center;
     color: burlywood;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-img {
-  align-self: center;
-  place-self: center;
-  max-width: 500px;
-}
 
-input {
+.cats-input {
   width: fit-content;
   height: 30px;
   font-size: large;
-  align-self: center;
   place-self: center;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
 }
