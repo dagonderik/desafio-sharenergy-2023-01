@@ -3,17 +3,18 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { UserDB } from "../../userDB";
 import Header from "../../components/header";
+import "./ClientList.css";
 
 const ClientList = () => {
   const [users, setUser] = useState<UserDB[]>([
     {
-        _id: "",
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-        cpf: ""
-    }
+      _id: "",
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      cpf: "",
+    },
   ]);
 
   useEffect(() => {
@@ -35,50 +36,55 @@ const ClientList = () => {
   };
 
   return (
-    <div className="columns mt-5 App">
-      <Header/>
-      <div className="column is-half">
-        <Link to="/add" className="button is-success">
+    <div className="users-container">
+      <div className="header-container">
+        <Header />
+        <Link to="/add" className="users-button button is-success">
           Add New
         </Link>
-        <table className="table is-striped is-fullwidth mt-2">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Gender</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={user._id}>
-                <td>{index + 1}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.phone}</td>
-                <td>{user.address}</td>
-                <td>{user.cpf}</td>
-                <td>
-                  <Link
-                    to={`/edit/${user._id}`}
-                    className="button is-info is-small mr-1"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => deleteUser(user._id)}
-                    className="button is-danger is-small"
-                  >
-                    Delete
-                  </button>
-                  <button className="delete"/>
-                </td>
+        <div className="table-container">
+          <table className="table is-hoverable is-striped is-fullwidth ">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>CPF</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={user._id}>
+                  <td>{index + 1}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.phone}</td>
+                  <td>{user.address}</td>
+                  <td>{user.cpf}</td>
+                  <td>
+                    <div className="users-managing-buttons">
+                      <Link
+                        to={`/edit/${user._id}`}
+                        className="button is-info is-small mr-1"
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        onClick={() => deleteUser(user._id)}
+                        className=" button is-danger is-small"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

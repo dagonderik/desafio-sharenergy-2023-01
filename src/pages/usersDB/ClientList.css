@@ -1,0 +1,20 @@
+.users-container {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.users-button {
+    margin-top: 50px;
+    margin-bottom: 10px
+}
+
+.users-managing-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+td{
+    text-overflow: ellipsis;
+}
