@@ -1,9 +1,21 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Header from "../../components/header";
 import "./Dogs.css";
 
 function Dogs({}) {
   const [dog, setDog] = useState("");
+
+  useEffect(() => {
+    const loadDog = async () => {
+      await fetch("https://random.dog/woof.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setDog(data.url);
+      })
+    }
+
+    loadDog();
+  }, []);
 
   return (
     <div className="dogs-container">
