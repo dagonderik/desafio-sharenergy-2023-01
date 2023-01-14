@@ -1,0 +1,20 @@
+#cover-img {
+    border-radius: 50%; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    width: 100px;
+    align-self: center;
+    border: solid 1px black;
+  }
+
+  #card {
+    background-color: rgb(231, 231, 231);
+    max-width: 400px;
+    box-shadow: 5px 5px 5px rgb(14, 14, 14);
+    transition: 0.3s;
+  }
+
+  #card:hover {
+    transform: scale(1.1);
+  }

@@ -1,4 +1,8 @@
-import { Divider, Pagination, Row } from "antd";
+import { Avatar, Divider, Pagination, Row } from "antd";
+import styles from "./Users.module.css";
+import Card from "antd/es/card";
+import Meta from "antd/es/card/Meta";
+import { Col } from "antd/es/grid";
 import {
   useState,
   useEffect,
@@ -59,7 +63,7 @@ function Users() {
   useEffect(() => {
     const loadUsers = async () => {
       await fetch(
-        "https://randomuser.me/api/?nat=br&page=1&results=5&seed=1234"
+        `https://randomuser.me/api/?nat=br&seed=1234&page=${1}&results=12`
       )
         .then((resp) => resp.json())
         .then((data) => {
@@ -71,21 +75,21 @@ function Users() {
     loadUsers();
   }, []);
 
-  function pageChange(page: number) {
+  function pageChange(page: number, pageSize: number) {
     setPageNumber(page);
     const loadUsers = async () => {
       await fetch(
-        `https://randomuser.me/api/?nat=br&page=${page}&results=5&seed=1234`
-        )
-          .then((resp) => resp.json())
-          .then((data) => {
-            setUsers(data.results);
-            setFilteredUsers(data.results);
-          });
-      };
+        `https://randomuser.me/api/?nat=br&page=${page}&results=${pageSize}&seed=1234`
+      )
+        .then((resp) => resp.json())
+        .then((data) => {
+          setUsers(data.results);
+          setFilteredUsers(data.results);
+        });
+    };
 
-      loadUsers();
-    }
+    loadUsers();
+  }
 
   function searchName(
     {
@@ -135,29 +139,45 @@ function Users() {
       <Header />
       <input onChange={handleChange} />
       <header className="App-header">
-        {filteredUsers.map((user, i) => {
-          return (
-            <div className="cards" key={i}>
-              <img src={user.picture.large} alt={user.name.first} />
-              <p>
-                {user.name.title +
-                  ". " +
-                  user.name.first +
-                  " " +
-                  user.name.last}
-              </p>
-              <p>{user.dob.age} years</p>
-              <p>username: {user.login.username}</p>
-              <p>{user.email}</p>
-            </div>
-          );
-        })}
+        <Row justify="space-around">
+          {filteredUsers.map((user, i) => {
+            return (
+              <Col className="cards" span={5} key={i}>
+                <Card
+                  id={styles.card}
+                  cover={
+                    <img
+                      id={styles["cover-img"]}
+                      src={user.picture.large}
+                      alt={user.name.first}
+                    />
+                  }
+                  bordered={true}
+                >
+                  <Meta
+                    title={
+                      user.name.title +
+                      ". " +
+                      user.name.first +
+                      " " +
+                      user.name.last
+                    }
+                  />
+                  <Meta description={`${user.dob.age} Years`} />
+                  <Meta description={user.login.username} />
+                  <Meta description={user.email} />
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
       </header>
       <footer>
         <Pagination
           defaultCurrent={pageNumber}
+          defaultPageSize={12}
           onChange={pageChange}
-          total={100}
+          total={48}
         />
       </footer>
     </div>

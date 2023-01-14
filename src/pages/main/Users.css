@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: white;
 }
 
 .App-header {
@@ -14,10 +15,7 @@
 }
 
 .cards {
-  display: block;
-  max-height: max-content;
-  border-style: solid;
-  border: white 2px 4px;
-  padding: 3px;
+  min-width: 200px;
   margin: 5px;
 }
+
