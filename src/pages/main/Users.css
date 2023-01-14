@@ -5,13 +5,16 @@
 .cards {
   min-width: 200px;
   margin: 5px;
+  z-index: 0;
 }
 
 .header-container {
   max-width: 1350px;
   max-height: fit-content;
   position: sticky;
-  left: calc((100vw - 1350px)/2)
+  left: calc((100vw - 1350px)/2);
+  top: 0;
+  z-index: 1;
 }
 
 .page-footer {
@@ -20,4 +23,9 @@
 
 .search-box {
   margin-top: 20px;
+  width: fit-content;
+  height: 30px;
+  font-size: large;
+  place-self: center;
+  margin-bottom: 50px;
 }
