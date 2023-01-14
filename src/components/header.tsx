@@ -31,10 +31,10 @@ function getItem(
 }
 
 const items: MenuItem[] = [
+  getItem('Users', '/users', <ContainerOutlined />),
   getItem('Cats', '/cats', <GithubOutlined />),
   getItem('Dogs', '/dogs', <DesktopOutlined />),
   getItem('Add Clients', '/clients', <ContainerOutlined />),
-  getItem('Users', '/users', <ContainerOutlined />),
 ];
 
 const Header: React.FC = () => {
