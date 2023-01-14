@@ -1,3 +1,4 @@
+import { Divider, Pagination, Row } from "antd";
 import {
   useState,
   useEffect,
@@ -10,7 +11,7 @@ import { UsersList } from "../../userList";
 import "./Users.css";
 
 function Users() {
-  const [page, setPage] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
   const [users, setUsers] = useState<UsersList[]>([
     {
       email: "",
@@ -70,38 +71,11 @@ function Users() {
     loadUsers();
   }, []);
 
-  function advancePage({
-    setPage,
-  }: {
-    setPage: Dispatch<SetStateAction<number>>;
-  }) {
-    setPage(page + 1);
+  function pageChange(page: number) {
+    setPageNumber(page);
     const loadUsers = async () => {
       await fetch(
-        `https://randomuser.me/api/?nat=br&page=${page + 1}&results=5&seed=1234`
-      )
-        .then((resp) => resp.json())
-        .then((data) => {
-          setUsers(data.results);
-          setFilteredUsers(data.results);
-        });
-    };
-
-    loadUsers();
-  }
-
-  function returnPage({
-    setPage,
-  }: {
-    setPage: Dispatch<SetStateAction<number>>;
-  }) {
-    if (page > 1) {
-      setPage(page - 1);
-      const loadUsers = async () => {
-        await fetch(
-          `https://randomuser.me/api/?nat=br&page=${
-            page - 1
-          }&results=5&seed=1234`
+        `https://randomuser.me/api/?nat=br&page=${page}&results=5&seed=1234`
         )
           .then((resp) => resp.json())
           .then((data) => {
@@ -112,7 +86,6 @@ function Users() {
 
       loadUsers();
     }
-  }
 
   function searchName(
     {
@@ -180,22 +153,13 @@ function Users() {
           );
         })}
       </header>
-      <div>
-        <button
-          className="returnButton"
-          onClick={() => returnPage({ setPage })}
-        >
-          {" "}
-          {page}{" "}
-        </button>
-        <button
-          className="fowardButton"
-          onClick={() => advancePage({ setPage })}
-        >
-          {" "}
-          {page + 1}{" "}
-        </button>
-      </div>
+      <footer>
+        <Pagination
+          defaultCurrent={pageNumber}
+          onChange={pageChange}
+          total={100}
+        />
+      </footer>
     </div>
   );
 }
