@@ -1,31 +1,26 @@
-.container {
-    background-color: #282c34;
-    max-height: 100%;
-    max-width: 100%;
+.dogs-container {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
 
-h1 {
+.dog-title {
     place-self: center;
-    text-align: center;
     color: burlywood;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .dog-image {
-    max-height: 80vh;
-    max-width: 100%;
-}
-
-.button-container {
-    display: grid;
-    gap: 10px;
+    width: 600px;
     place-self: center;
+    margin: 50px 50px 50px 50px;
 }
 
-button {
-    align-self: center;
-    max-width: fit-content;
-    text-overflow: ellipsis;
+.dog-button {
     height: 30px;
     font-size: large;
     place-self: center;
+    margin-bottom: 50px;
 }
