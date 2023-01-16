@@ -1,20 +1,35 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/header";
+import "./EditUsers.css";
 
-const AddClient = () => {
+const EditClient = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [cpf, setCPF] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const saveUser = async (e: { preventDefault: () => void }) => {
+  useEffect(() => {
+    getUserById();
+  }, []);
+
+  const getUserById = async () => {
+    const response = await axios.get(`http://localhost:5000/users/${id}`);
+    setName(response.data.name);
+    setEmail(response.data.email);
+    setPhone(response.data.phone);
+    setAddress(response.data.address);
+    setCPF(response.data.cpf);
+  };
+
+  const updateUser = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/users", {
+      await axios.patch(`http://localhost:5000/users/${id}`, {
         name,
         email,
         phone,
@@ -31,9 +46,9 @@ const AddClient = () => {
     <div className="users-container">
       <div className="header-container">
         <Header />
-        <div className="main-contain">
+        <div className="main-contain  ">
           <div className="column is-half">
-            <form onSubmit={saveUser}>
+            <form onSubmit={updateUser}>
               <div className="field">
                 <label className="label label-users">Name</label>
                 <div className="control">
@@ -68,7 +83,7 @@ const AddClient = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="(XX) XXXXX-XXXX"
-                  ></input>
+                  />
                 </div>
               </div>
               <div className="field">
@@ -80,7 +95,7 @@ const AddClient = () => {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Address"
-                  ></input>
+                  />
                 </div>
               </div>
               <div className="field">
@@ -91,14 +106,14 @@ const AddClient = () => {
                     className="input"
                     value={cpf}
                     onChange={(e) => setCPF(e.target.value)}
-                    placeholder="CPF"
-                  ></input>
+                    placeholder="000.000.000-00"
+                  />
                 </div>
               </div>
               <div className="field">
                 <div className="control">
                   <button type="submit" className="button is-success">
-                    Save
+                    Update
                   </button>
                 </div>
               </div>
@@ -110,4 +125,4 @@ const AddClient = () => {
   );
 };
 
-export default AddClient;
+export default EditClient;

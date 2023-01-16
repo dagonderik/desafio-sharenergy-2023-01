@@ -129,7 +129,6 @@ function Users() {
     const search = e.target.value;
     if (e.target.value == "") {
       setFilteredUsers(users);
-      console.log("alo");
     }
     searchName({ setFilteredUsers }, search);
   };
