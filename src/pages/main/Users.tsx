@@ -135,7 +135,7 @@ function Users() {
   };
 
   return (
-    <div className="App">
+    <div className="User-app">
       <div className="header-container">
         <Header />
       </div>
