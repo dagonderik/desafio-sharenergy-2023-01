@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import {
-  AppstoreOutlined,
-  ContainerOutlined,
-  DesktopOutlined,
-  MailOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
+  AndroidFilled,
+  UserOutlined,
+  GitlabFilled,
   GithubOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Button, Menu } from 'antd';
+import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -31,10 +28,10 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Users', '/users', <ContainerOutlined />),
+  getItem('Users', '/users', <AndroidFilled />),
   getItem('Cats', '/cats', <GithubOutlined />),
-  getItem('Dogs', '/dogs', <DesktopOutlined />),
-  getItem('Add Clients', '/clients', <ContainerOutlined />),
+  getItem('Dogs', '/dogs', <GitlabFilled />),
+  getItem('Add Clients', '/clients', <UserOutlined />),
 ];
 
 const Header: React.FC = () => {
