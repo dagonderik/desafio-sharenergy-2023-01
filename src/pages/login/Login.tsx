@@ -25,28 +25,39 @@ function Login() {
   });
 
   return (
-    <div className="App">
-      <div className="Container">
-        <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="Login-app">
+      <div className="Login-container">
+        <h1 className="Login-title">User Login</h1>
+        <hr className="Login-divider" />
+        <form className="Login-form" onSubmit={handleSubmit(onSubmit)}>
+          <label>User:</label>
           <input
-            className="Input-user"
-            placeholder="username"
+            className="Login-input"
+            placeholder="Username"
             {...register("username", { required: true })}
           />
           {errors.username && <span>This field is required</span>}
+          <label>Password:</label>
           <input
-            className="Input-password"
-            placeholder="password"
+            className="Login-input"
+            placeholder="●●●●●●●●●"
+            type="password"
             {...register("password", { required: true })}
           />
           {errors.password && <span>This field is required</span>}
-          <input type="submit" />
-          <input
-            type="checkbox"
-            id="remember"
-            {...register("remember", { required: false })}
-          />
-          <label htmlFor="remember"> Remember me </label>
+          <div>
+            <input
+              className="Login-checkbox"
+              type="checkbox"
+              id="remember"
+              {...register("remember", { required: false })}
+            />
+            <label className="Login-remember" htmlFor="remember">
+              {" "}
+              Remember me{" "}
+            </label>
+          </div>
+          <input className="Login-submit" type="submit" />
         </form>
       </div>
     </div>
